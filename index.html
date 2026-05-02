@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final</title>
+</head>
+<body style="background:black; color:white; text-align:center; font-family:monospace;">
+
+<h2>Introduce la respuesta final:</h2>
+
+<input type="text" id="respuesta" placeholder="Escribe aquí...">
+<br><br>
+<button onclick="verificar()">Enviar</button>
+
+<p id="mensaje"></p>
+
+<script>
+function verificar() {
+    const input = document.getElementById("respuesta").value.trim();
+    
+    // 👇 AQUÍ pones la respuesta correcta (ya decodificada)
+    const correcta = "AQUI_VA_TU_TEXTO_FINAL";
+
+    if(input === correcta){
+        document.getElementById("mensaje").innerHTML = "Correcto... pero ya es tarde.";
+
+        // ⏳ espera 7 segundos y los saca
+        setTimeout(() => {
+            window.location.href = "https://www.google.com";
+        }, 7000);
+
+    } else {
+        document.getElementById("mensaje").innerHTML = "Incorrecto.";
+    }
+}
+</script>
+
+</body>
+</html>
