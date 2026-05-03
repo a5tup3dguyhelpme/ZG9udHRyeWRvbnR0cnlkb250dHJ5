@@ -3,6 +3,12 @@
 <html>
 <head>
     <title>Final</title>
+    
+    <script>
+    if(localStorage.getItem("baneado") === "si"){
+        document.write("<h1 style='color:red; text-align:center;'>Acceso denegado.</h1><p style='text-align:center;'>Ya no puedes regresar.</p>");
+    }
+    </script>
 </head>
 <body style="background:black; color:white; text-align:center; font-family:monospace;">
 
@@ -26,11 +32,12 @@ function verificar() {
         document.getElementById("mensaje").innerHTML = "Correcto... pero ya es tarde.";
 document.getElementById("respuesta").disabled = true;
 document.querySelector("button").disabled = true;
-        // ⏳ espera 7 segundos y los saca
+        // ⏳ espera 5 segundos y los saca
         setTimeout(() => {
             window.location.href = "https://www.google.com";
         }, 5000);
-
+localStorage.setItem("baneado", "si");
+        
     } else {
         document.getElementById("mensaje").innerHTML = "Incorrecto.";
     }
