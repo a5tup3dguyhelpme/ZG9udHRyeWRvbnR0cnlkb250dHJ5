@@ -3,7 +3,17 @@
 <html>
 <head>
     <title>Final</title>
-
+<script>
+if(localStorage.getItem("baneado") === "si"){
+    document.documentElement.innerHTML = `
+    <body style="background:black; color:red; text-align:center; font-family:monospace;">
+        <h1>ACCESO DENEGADO</h1>
+        <p>don´t try bro.</p>
+    </body>
+    `;
+    throw new Error("Acceso bloqueado");
+}
+</script>
 <style>
 .glitch {
     animation: glitch 0.2s infinite;
