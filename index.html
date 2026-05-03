@@ -3,7 +3,8 @@
 <html>
 <head>
     <title>Final</title>
-    <style>
+
+<style>
 .glitch {
     animation: glitch 0.2s infinite;
 }
@@ -26,57 +27,66 @@
     100% { background: black; }
 }
 </style>
-    
 
-    <script>
-    // 🔒 si ya está baneado, no deja entrar
-    if(localStorage.getItem("baneado") === "si"){
-        document.write("<h1 style='color:red; text-align:center;'>ACCESO DENEGADO</h1><p style='text-align:center;'>No debiste regresar.</p>");
-    }
-    </script>
+<script>
+// 🔒 bloqueo si ya está baneado
+if(localStorage.getItem("baneado") === "si"){
+    document.write("<h1 style='color:red; text-align:center;'>ACCESO DENEGADO</h1><p style='text-align:center;'>No debiste regresar.</p>");
+}
+</script>
+
 </head>
+
 <body style="background:black; color:white; text-align:center; font-family:monospace;">
 
 <h2>put the answer:</h2>
 
-<textarea id="respuesta" placeholder="write right here..." 
+<textarea id="respuesta" placeholder="write right here..."
 style="width: 80%; height: 200px; font-size:16px; padding:10px; background:black; color:white; border:2px solid white;"></textarea>
+
 <br><br>
 <button onclick="verificar()">send</button>
 
 <p id="mensaje"></p>
 
 <script>
-function verificar() {
+async function verificar() {
     const input = document.getElementById("respuesta").value.trim();
+
     
-    // 👇 AQUÍ pones la respuesta correcta (ya decodificada)
-    const correcta = "heyyyyy, bueno, parece que perdiste tu tiempo de nuevo, normal, no hay nada aquí interesante, o si?, bueno, vamos a ver si puedes descifrar esto ultimo:cmon bro, dont lose ur time with this, youll get fooled by someone";
+    const hashCorrecto = "b827bf3ba98cbfd7d251647937c5f6851621c03e8636131a59db262445e5483b";
 
-    if(input.toLowerCase() === correcta.toLowerCase()){
+    const encoder = new TextEncoder();
+    const data = encoder.encode(input);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashUsuario = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+
+    if(hashUsuario === hashCorrecto){
+
+       
+        localStorage.setItem("baneado", "si");
+
         document.getElementById("mensaje").innerHTML = "yes, correct, but you took too long";
-        
-    // 🔒 guardar baneo primero
-    localStorage.setItem("baneado", "si");
 
-    // 🚫 bloquear input
-    document.getElementById("respuesta").disabled = true;
-    document.querySelector("button").disabled = true;
-         // 👁️ activar glitch
-    document.body.classList.add("glitch");
-    document.body.classList.add("flash");
-           // 💀 mensaje creepy
-    setTimeout(() => {
-        document.getElementById("mensaje").innerHTML = "well, i i think we´ll see later, or maybe not";
-    }, 2000);
+        // 🚫 bloquear input
+        document.getElementById("respuesta").disabled = true;
+        document.querySelector("button").disabled = true;
 
-        // ⏳ espera 5 segundos y los saca
+        // 👁️ glitch
+        document.body.classList.add("glitch");
+        document.body.classList.add("flash");
+
+        // 💀 mensaje creepy
+        setTimeout(() => {
+            document.getElementById("mensaje").innerHTML = "well, i think we’ll see later... or maybe not";
+        }, 2000);
+
+        // ⏳ expulsión en 5 segundos
         setTimeout(() => {
             window.location.href = "https://www.google.com";
         }, 5000);
 
-
-        
     } else {
         document.getElementById("mensaje").innerHTML = "Incorrecto.";
     }
