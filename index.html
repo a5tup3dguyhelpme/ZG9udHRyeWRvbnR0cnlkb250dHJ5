@@ -37,12 +37,12 @@
 </head>
 <body style="background:black; color:white; text-align:center; font-family:monospace;">
 
-<h2>Introduce la respuesta final:</h2>
+<h2>put the answer:</h2>
 
-<textarea id="respuesta" placeholder="Escribe aquí..." 
+<textarea id="respuesta" placeholder="write right here..." 
 style="width: 80%; height: 200px; font-size:16px; padding:10px; background:black; color:white; border:2px solid white;"></textarea>
 <br><br>
-<button onclick="verificar()">Enviar</button>
+<button onclick="verificar()">send</button>
 
 <p id="mensaje"></p>
 
@@ -54,12 +54,10 @@ function verificar() {
     const correcta = "heyyyyy, bueno, parece que perdiste tu tiempo de nuevo, normal, no hay nada aquí interesante, o si?, bueno, vamos a ver si puedes descifrar esto ultimo:cmon bro, dont lose ur time with this, youll get fooled by someone";
 
     if(input.toLowerCase() === correcta.toLowerCase()){
-        document.getElementById("mensaje").innerHTML = "Correcto... pero ya es tarde.";
+        document.getElementById("mensaje").innerHTML = "yes, correct, but you took too long";
         
     // 🔒 guardar baneo primero
     localStorage.setItem("baneado", "si");
-
-    document.getElementById("mensaje").innerHTML = "Correcto... pero ya es tarde.";
 
     // 🚫 bloquear input
     document.getElementById("respuesta").disabled = true;
