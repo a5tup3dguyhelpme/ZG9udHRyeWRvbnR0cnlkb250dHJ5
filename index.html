@@ -24,11 +24,12 @@ function verificar() {
 
     if(input === correcta){
         document.getElementById("mensaje").innerHTML = "Correcto... pero ya es tarde.";
-
+document.getElementById("respuesta").disabled = true;
+document.querySelector("button").disabled = true;
         // ⏳ espera 7 segundos y los saca
         setTimeout(() => {
             window.location.href = "https://www.google.com";
-        }, 7000);
+        }, 5000);
 
     } else {
         document.getElementById("mensaje").innerHTML = "Incorrecto.";
