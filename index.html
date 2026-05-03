@@ -53,7 +53,7 @@ function verificar() {
     // 👇 AQUÍ pones la respuesta correcta (ya decodificada)
     const correcta = "heyyyyy, bueno, parece que perdiste tu tiempo de nuevo, normal, no hay nada aquí interesante, o si?, bueno, vamos a ver si puedes descifrar esto ultimo:cmon bro, dont lose ur time with this, youll get fooled by someone";
 
-    if(input.toLowerCase() === correcta.toLowerCase(){
+    if(input.toLowerCase() === correcta.toLowerCase()){
         document.getElementById("mensaje").innerHTML = "Correcto... pero ya es tarde.";
         
     // 🔒 guardar baneo primero
@@ -67,6 +67,10 @@ function verificar() {
          // 👁️ activar glitch
     document.body.classList.add("glitch");
     document.body.classList.add("flash");
+           // 💀 mensaje creepy
+    setTimeout(() => {
+        document.getElementById("mensaje").innerHTML = "well, i i think we´ll see later, or maybe not";
+    }, 2000);
 
         // ⏳ espera 5 segundos y los saca
         setTimeout(() => {
